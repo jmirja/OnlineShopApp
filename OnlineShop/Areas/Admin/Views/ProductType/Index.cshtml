@@ -11,7 +11,7 @@
         <h2>Product Type List</h2>
     </div>
     <div class="col-md-6 text-md-right">
-        <a asp-action="Create" class="btn-info">&nbsp; Add New Product</a>
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; Add New Product</a>
     </div>
 </div>
 
@@ -22,17 +22,33 @@
         <thead class="table-info">
             <tr>
                 <th>@Html.DisplayNameFor(e => e.ProductTypeName)</th>
-                <th class="text-right">Action</th>
+                <th></th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
                 @foreach (var item in Model)
                 {
+                    <tr>
                     <td>@item.ProductTypeName</td>
-                    <td class="text-right">Edit | Details | Delete</td>
+                    <td><partial name="_ActionButtonParital"  model="@item.ID" /></td>
+                    </tr>
                 }
-            </tr>
+          
         </tbody>
     </table>
 </div>
+
+@section Scripts
+{ 
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var save = '@TempData["Save"]'
+            if (save != null) {
+                alertify.success(save);
+            }
+        });
+
+    </script>
+}

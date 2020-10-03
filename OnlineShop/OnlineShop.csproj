@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UserSecretsId>aspnet-OnlineShop-5CBB5995-3E11-45B6-A2C6-33226A4DD279</UserSecretsId>
+    <StartupObject>OnlineShop.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
