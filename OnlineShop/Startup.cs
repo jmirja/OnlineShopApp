@@ -32,7 +32,8 @@ namespace OnlineShop
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
+            services.AddControllers(options => options.EnableEndpointRouting = false);
             services.AddRazorPages();
         }
 
@@ -58,12 +59,12 @@ namespace OnlineShop
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
+            app.UseMvc(routes =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapRazorPages();
+                routes.MapRoute(
+                  name: "areas",
+                  template: "{area=Customer}/{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }

@@ -1,0 +1,30 @@
+﻿@model OnlineShop.Models.ProductType
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h2>Create Product</h2>
+<form asp-action="Create" method="post">
+<div class="p-4 rounded border">
+    <div asp-validation-summery="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <div class="col-md-2">
+            <label asp-for="ProductTypeName"></label>
+        </div>
+        <div class="col-md-5">
+            <input asp-for="ProductTypeName" class="form-control"/>
+        </div>
+        <span asp-validation-for="ProductTypeName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Save"/>
+        <a asp-action="Index" class="btn btn-success">View List</a>
+    </div>
+</div>
+</form>
+
+@section Scripts{
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");}
+}
