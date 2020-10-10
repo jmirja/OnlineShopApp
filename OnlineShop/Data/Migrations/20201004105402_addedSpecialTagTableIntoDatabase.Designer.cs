@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineShop.Data;
 
 namespace OnlineShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201004105402_addedSpecialTagTableIntoDatabase")]
+    partial class addedSpecialTagTableIntoDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,41 +221,6 @@ namespace OnlineShop.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("OnlineShop.Models.Product", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Image")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("ProductTypeID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SpecialTagID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("ProductTypeID");
-
-                    b.HasIndex("SpecialTagID");
-
-                    b.ToTable("Products");
-                });
-
             modelBuilder.Entity("OnlineShop.Models.ProductType", b =>
                 {
                     b.Property<int>("ID")
@@ -267,7 +234,7 @@ namespace OnlineShop.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("ProductTypes");
+                    b.ToTable("productTypes");
                 });
 
             modelBuilder.Entity("OnlineShop.Models.SpecialTag", b =>
@@ -283,7 +250,7 @@ namespace OnlineShop.Data.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("SpecialTags");
+                    b.ToTable("specialTags");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -333,21 +300,6 @@ namespace OnlineShop.Data.Migrations
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("OnlineShop.Models.Product", b =>
-                {
-                    b.HasOne("OnlineShop.Models.ProductType", "ProductType")
-                        .WithMany()
-                        .HasForeignKey("ProductTypeID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OnlineShop.Models.SpecialTag", "SpecialTag")
-                        .WithMany()
-                        .HasForeignKey("SpecialTagID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineShop.Data;
 
 namespace OnlineShop.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201004122526_renamedAlltable")]
+    partial class renamedAlltable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -339,13 +341,13 @@ namespace OnlineShop.Data.Migrations
 
             modelBuilder.Entity("OnlineShop.Models.Product", b =>
                 {
-                    b.HasOne("OnlineShop.Models.ProductType", "ProductType")
+                    b.HasOne("OnlineShop.Models.ProductType", "productType")
                         .WithMany()
                         .HasForeignKey("ProductTypeID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("OnlineShop.Models.SpecialTag", "SpecialTag")
+                    b.HasOne("OnlineShop.Models.SpecialTag", "specialTag")
                         .WithMany()
                         .HasForeignKey("SpecialTagID")
                         .OnDelete(DeleteBehavior.Cascade)
